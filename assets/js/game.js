@@ -1,5 +1,13 @@
+var getPlayerName = function() {
+    var name = "";
+    console.log("Your robot's name is " + name);
+    while (name === "" || name === null) {
+        name = prompt("What is your robot's name?");
+    }
+}
+
 var playerInfo = {
-    name: window.prompt("What is your robot's name?"),
+    name: getPlayerName(),
     health: 100,
     attack: 10,
     money: 10,
@@ -54,7 +62,7 @@ var enemyInfo = [
 ];
 
 var fight = function(enemy) {
-    while(playerInfo.health > 0 && enemy.Health > 0) {
+    while(playerInfo.health > 0 && enemy.health > 0) {
         var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.");
         if (promptFight === "skip" || promptFight === "SKIP") {
             var confirmSkip = window.confirm("Are you sure you'd like to quit?");
@@ -67,9 +75,9 @@ var fight = function(enemy) {
         }
         var damage = randomNumber(playerInfo.attack - 3, playerInfo.attack);
 
-        enemy.Health = Math.max(0, enemy.Health - damage);
+        enemy.health = Math.max(0, enemy.health - damage);
         console.log(
-            playerInfo.name + " attacked " + enemy.Name + ". " + enemy.Name + " now has " + enemy.Health + " health remaining."
+            playerInfo.name + " attacked " + enemy.name + ". " + enemy.name + " now has " + enemy.health + " health remaining."
         );
         if (enemy.Health <= 0) {
             window.alert(enemy.Name + " has died!");
@@ -77,9 +85,9 @@ var fight = function(enemy) {
             break;
         }
         else {
-            window.alert(enemy.Name + " still has " + enemy.Health + " health left.");
+            window.alert(enemy.Name + " still has " + enemy.health + " health left.");
         }
-        var damage = randomNumber(enemy.Attack - 3, enemy.Attack);
+        var damage = randomNumber(enemy.attack - 3, enemy.attack);
 
         playerInfo.health = Math.max(0, playerInfo.health - damage);
         console.log(
